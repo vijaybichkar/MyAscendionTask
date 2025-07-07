@@ -26,3 +26,10 @@ class HomePage:
         if self.cart_badge.is_visible():
             return int(self.cart_badge.text_content())
         return 0
+    
+    def add_item_to_cart(self):
+        self.page.locator("button[id^='add-to-cart']").first.click()
+
+    def go_to_cart(self):
+        self.page.locator(".shopping_cart_link").click()
+
