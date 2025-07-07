@@ -33,3 +33,11 @@ class HomePage:
     def go_to_cart(self):
         self.page.locator(".shopping_cart_link").click()
 
+    def sort_items_by_price_low_to_high(self):
+        self.page.locator('.product_sort_container').click()
+        self.page.locator('.product_sort_container').select_option("lohi")
+
+    def get_all_item_prices(self):
+        price_elements = self.page.locator(".inventory_item_price")
+        prices = price_elements.all_inner_texts()
+        return [float(p.replace("$", "")) for p in prices]
