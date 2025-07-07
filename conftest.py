@@ -9,7 +9,7 @@ def playwright_instance():
         yield p
 
 @pytest.fixture(scope="function")
-def browser_context(playwright_instance, request):
+def page(playwright_instance, request):
     browser = playwright_instance.chromium.launch(headless=False)
     context = browser.new_context()
     page = context.new_page()
@@ -20,11 +20,11 @@ def browser_context(playwright_instance, request):
     browser.close()
 
 @pytest.fixture(scope="function")
-def logged_in_user(browser_context):
-    login_page = LoginPage(browser_context)
+def logged_in_user(page):
+    login_page = LoginPage(page)
     login_page.load()
     login_page.login("standard_user", "secret_sauce")
-    home_page = HomePage(browser_context)
+    home_page = HomePage(page)
 
     yield home_page  # test will use this
 

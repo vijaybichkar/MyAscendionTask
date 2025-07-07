@@ -5,6 +5,7 @@ class HomePage:
         self.logout_link = page.locator("#logout_sidebar_link")
         self.cart_button = page.locator(".shopping_cart_link")
         self.add_to_cart_button = page.locator("button[data-test='add-to-cart-sauce-labs-backpack']")
+        self.remove_button = page.locator("#remove-sauce-labs-backpack")
         self.cart_badge = page.locator(".shopping_cart_badge")
 
     def logout(self):
@@ -14,6 +15,9 @@ class HomePage:
 
     def add_item_to_cart(self):
         self.add_to_cart_button.click()
+
+    def remove_item_from_cart(self):
+        self.remove_button.click()
 
     def go_to_cart(self):
         self.cart_button.click()
