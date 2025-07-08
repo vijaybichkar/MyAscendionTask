@@ -37,7 +37,25 @@ class HomePage:
         self.page.locator('.product_sort_container').click()
         self.page.locator('.product_sort_container').select_option("lohi")
 
+
+    def sort_items_by_price_high_to_low(self):
+        self.page.locator('.product_sort_container').click()
+        self.page.locator('.product_sort_container').select_option("hilo")
+
     def get_all_item_prices(self):
         price_elements = self.page.locator(".inventory_item_price")
         prices = price_elements.all_inner_texts()
         return [float(p.replace("$", "")) for p in prices]
+    
+    def get_item_names(self):
+        elements = self.page.locator(".inventory_item_name")
+        return elements.all_inner_texts()
+
+    def sort_items_AtoZ(self):
+        self.page.locator('.product_sort_container').click()
+        self.page.locator('.product_sort_container').select_option("az")
+
+    def sort_items_ZtoA(self):
+        self.page.locator('.product_sort_container').click()
+        self.page.locator('.product_sort_container').select_option("za")
+
