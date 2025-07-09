@@ -8,6 +8,15 @@ class HomePage:
         self.product_titles = page.locator(".inventory_item_name")
         self.product_descriptions = page.locator(".inventory_item_desc")
 
+
+    def get_first_product_description(self):
+        return self.product_descriptions.nth(0).inner_text()
+
+
+    def get_last_product_label(self):
+        return self.product_titles.last.inner_text()
+
+
     def logout(self):
         self.burger_menu_button.click()
         self.page.wait_for_timeout(500)
