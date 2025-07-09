@@ -8,7 +8,7 @@ class LoginPage:
 
     def load(self):
         self.page.goto("https://www.saucedemo.com/")
-
+        self.page.wait_for_timeout(1000)
     def login(self, username, password):
         self.username_input.fill(username)
         self.password_input.fill(password)

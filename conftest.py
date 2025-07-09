@@ -12,9 +12,10 @@ def playwright_instance():
     with sync_playwright() as p:
         yield p
 
-@pytest.fixture(scope="function")
+@pytest.fixture(params=["chromium", "firefox", "webkit"])
 def page(playwright_instance, request):
-    browser = playwright_instance.chromium.launch(headless=False)
+    browser_type = getattr(playwright_instance, request.param)
+    browser = browser_type.launch(headless=False)  
     context = browser.new_context()
     page = context.new_page()
     yield page
